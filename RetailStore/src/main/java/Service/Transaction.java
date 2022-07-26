@@ -1,6 +1,6 @@
 package Service;
 
 public interface Transaction {
-   void fn();
-   void fn2();
+   double generateBill(int transactionID, String customerName, int noofBooks, int noofCd, int noofCosmetics);
+   double showBill(int transactionID);
 }
