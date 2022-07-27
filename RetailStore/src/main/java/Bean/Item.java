@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Customer {
-	int customerID;
-	String customerName;
-	String userName;
-	String password;
-	
+public class Item {
+	int itemID;
+	String itemName;
+	String itemcategory;
+	int itemQuantity;
+	double itemPrice;	
 
 }

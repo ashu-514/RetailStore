@@ -1,12 +1,15 @@
 package Bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Product {
 	int productID;
-	String productName;
-	String productType;
+	String productCategory;
 	int productQuantity;
-	double tax;
-	double price;	
 
 }
