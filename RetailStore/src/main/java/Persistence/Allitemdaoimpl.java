@@ -34,8 +34,28 @@ public class Allitemdaoimpl implements AllitemDao {
 
 	@Override
 	public void additem() {
-		// TODO Auto-generated method stub
-		
+		int rows = 0;
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("INSERT INTO allItems values(?,?,?)");) {
+
+			preparedStatement.setInt(1, allItems.getitem_ID());
+			preparedStatement.setInt(2, allItems.getitem_Name());
+			preparedStatement.setInt(3, allItems.getitem_Category);
+			preparedStatement.setInt(4, allItems.getitem_Quantity());
+			preparedStatement.setInt(5, allItems.getitem_Price());
+
+			rows = preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (rows>0)
+		   return true;
+		else
+			return false;
+	}
 
 	}
 
