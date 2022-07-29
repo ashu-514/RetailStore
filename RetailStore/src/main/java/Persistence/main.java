@@ -10,6 +10,7 @@ public class main {
 		transactionDaoImpl t1=new transactionDaoImpl();
 		t1.showalltransactions();
 		System.out.println("done");
+		System.out.println("kkkkk");
 	}
 
 }
