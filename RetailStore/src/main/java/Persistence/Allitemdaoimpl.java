@@ -1,23 +1,23 @@
 package Persistence;
 
-public class ProductDaoImp implements ProductDao {
+public class Allitemdaoimpl implements AllitemDao {
 
 	@Override
-	public void addProduct() {
+	public void showallitem() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void deleteProduct() {
+	public void additem() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void searchProduct() {
+	public void deleteitem() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
