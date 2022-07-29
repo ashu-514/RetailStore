@@ -1,4 +1,10 @@
 package Persistence;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class transactionDaoImpl implements TransactionDao {
 
@@ -11,7 +17,7 @@ public class transactionDaoImpl implements TransactionDao {
 			
 			while(resultSet.next()) {
 				int Transaction_ID=resultSet.getInt("Transaction_Id");
-				int Customer_ID=resultSet.getString("Customer_ID");
+				int Customer_ID=resultSet.getInt("Customer_ID");
 
 				
 				System.out.println(Transaction_ID+" "+Customer_ID);
