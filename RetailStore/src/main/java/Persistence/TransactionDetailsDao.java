@@ -1,7 +1,10 @@
 package Persistence;
 
+import Bean.Transaction_Details;
+
 public interface TransactionDetailsDao {
 	void showalltransactionDetails();
-	void addtransactionDetail();
+	boolean addtransactionDetail(Transaction_Details trans_details);
 	void deletetransactionDetail();
 }
+
