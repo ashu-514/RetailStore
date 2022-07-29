@@ -11,10 +11,10 @@ public class TransactionDetailsDaoImpl implements TransactionDetailsDao {
 
 	@Override
 	public void showalltransactionDetails() {
-		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "wiley");
+		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "root");
 				Statement statement=connection.createStatement();	) {
 
-			ResultSet resultSet= statement.executeQuery("SELECT * FROM retailstore");
+			ResultSet resultSet= statement.executeQuery("SELECT * FROM transaction_details");
 			
 			while(resultSet.next()) {
 				int Transaction_id=resultSet.getInt("transaction_id");

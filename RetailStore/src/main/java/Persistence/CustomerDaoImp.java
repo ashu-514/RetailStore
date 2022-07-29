@@ -18,7 +18,7 @@ public class CustomerDaoImp implements CustomerDao {
 		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "root");
 				Statement statement=connection.createStatement();	) {
 
-			ResultSet resultSet= statement.executeQuery("SELECT * FROM retailstore");
+			ResultSet resultSet= statement.executeQuery("SELECT * FROM customer");
 			
 			while(resultSet.next()) {
 				int customer_id=resultSet.getInt("customer_Id");
