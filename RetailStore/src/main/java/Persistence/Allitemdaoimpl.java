@@ -22,7 +22,7 @@ public class Allitemdaoimpl implements AllitemDao {
 				int item_Quantity = resultSet.getInt("quantity");
 				double item_price = resultSet.getDouble("price");
 								
-				System.out.println(item_Id +" "+item_Name+" "+item_Category+" "+quantity," ",price);
+				System.out.println(item_ID +" "+item_Name+" "+item_Category+" "+item_Quantity+" "+item_price);
 			}
 			
 		} catch (SQLException e) {
