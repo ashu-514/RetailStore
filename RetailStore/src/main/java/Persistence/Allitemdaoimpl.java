@@ -35,6 +35,7 @@ public class Allitemdaoimpl implements AllitemDao {
 	@Override
 	public void additem() {
 		// TODO Auto-generated method stub
+		
 
 	}
 
