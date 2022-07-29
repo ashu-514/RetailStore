@@ -1,4 +1,10 @@
 package Persistence;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +16,8 @@ public class transactionDaoImpl implements TransactionDao {
 
 	@Override
 	public void showalltransactions() {
-		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "wiley");
+		try( Connection connection=DriverManager.
+				getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "wiley");
 				Statement statement=connection.createStatement();	) {
 
 			ResultSet resultSet= statement.executeQuery("SELECT * FROM Transaction");

@@ -1,10 +1,34 @@
 package Persistence;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 public class Allitemdaoimpl implements AllitemDao {
 
 	@Override
 	public void showallitem() {
-		// TODO Auto-generated method stub
+		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "wiley");
+				Statement statement=connection.createStatement();	) {
+
+			ResultSet resultSet= statement.executeQuery("SELECT * FROM allItems");
+			
+			while(resultSet.next()) {
+				int item_ID = resultSet.getInt("item_Id");
+				String item_Name = resultSet.getString("item_Name");
+				String item_Category = resultSet.getString("item_Category");
+				int item_Quantity = resultSet.getInt("quantity");
+				double item_price = resultSet.getDouble("price");
+								
+				System.out.println(item_ID +" "+item_Name+" "+item_Category+" "+item_Quantity+" "+item_price);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 

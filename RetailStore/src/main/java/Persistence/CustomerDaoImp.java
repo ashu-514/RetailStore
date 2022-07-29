@@ -65,12 +65,12 @@ public class CustomerDaoImp implements CustomerDao {
 
 
 	@Override
-	public int addCustomer(Customer customer) {
+	public boolean addCustomer(Customer customer) {
 		int rows = 0;
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
 				"wiley");
 				PreparedStatement preparedStatement = connection
-						.prepareStatement("INSERT INTO customer values(?,?,?,?,)");) {
+						.prepareStatement("INSERT INTO Customer values(?,?,?,?)");) {
 
 			preparedStatement.setInt(1, customer.getCustomer_ID());
 			preparedStatement.setString(2, customer.getCustomer_Name());
@@ -83,7 +83,10 @@ public class CustomerDaoImp implements CustomerDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return rows;
+		if (rows>0)
+		   return true;
+		else
+			return false;
 		
 	}
 
