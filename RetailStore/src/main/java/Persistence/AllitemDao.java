@@ -2,6 +2,6 @@ package Persistence;
 
 public interface AllitemDao {
 void showallitem();
-void additem();
+boolean additem(Item item);
 void deleteitem();
 }
