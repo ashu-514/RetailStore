@@ -42,16 +42,49 @@ public class CustomerDaoImp implements CustomerDao {
 	}
 
 	@Override
-	public void searchCustomer() {
-		// TODO Auto-generated method stub
+	public boolean searchCustomer(int id) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("SELECT * FROM customer where customer_Id=?");) {
+
+			preparedStatement.setInt(1,id);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				int id1 = resultSet.getInt("customer_Id");
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 		
 	}
 
 
 	@Override
 	public int addCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		return 0;
+		int rows = 0;
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("INSERT INTO customer values(?,?,?,?,)");) {
+
+			preparedStatement.setInt(1, customer.getCustomer_ID());
+			preparedStatement.setString(2, customer.getCustomer_Name());
+			preparedStatement.setString(3, customer.getUserName());
+			preparedStatement.setString(4, customer.getPassword());
+			
+
+			rows = preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+		
 	}
 
 
