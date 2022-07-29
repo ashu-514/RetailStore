@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Bean.Transaction;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -37,8 +39,27 @@ public class transactionDaoImpl implements TransactionDao {
 	}
 
 	@Override
-	public void addtransaction() {
-		// TODO Auto-generated method stub
+	public boolean addtransaction(Transaction transaction) {
+		int rows = 0;
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("INSERT INTO Transaction values(?,?)");) {
+
+			preparedStatement.setInt(1, transaction.getTransaction_ID());
+			preparedStatement.setInt(2, transaction.getCustomer_ID());
+			
+			
+
+			rows = preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (rows>0)
+		   return true;
+		else
+			return false;
 
 	}
 
