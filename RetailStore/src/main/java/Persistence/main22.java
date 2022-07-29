@@ -1,6 +1,6 @@
 package Persistence;
 
-public class main {
+public class main22 {
 	public static void main(String args[])
 	{
 		TransactionDetailsDaoImpl t=new TransactionDetailsDaoImpl();
