@@ -1,9 +1,12 @@
 package Persistence;
 
+import Bean.Customer;
+
 public interface CustomerDao {
 
 	
-	void addCustomer();
+	int addCustomer(Customer customer);
 	void deleteCustomer();
 	void searchCustomer();
+	void showCustomer();
 }
