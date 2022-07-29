@@ -10,8 +10,8 @@ import java.sql.Statement;
 public class TransactionDetailsDaoImpl implements TransactionDetailsDao {
 
 	@Override
-	public void showalltransactionDetails() {
-		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "root");
+	public void showalltransactionDetails() {            
+		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "wiley");
 				Statement statement=connection.createStatement();	) {
 
 			ResultSet resultSet= statement.executeQuery("SELECT * FROM transaction_details");

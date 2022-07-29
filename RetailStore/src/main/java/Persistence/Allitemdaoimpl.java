@@ -10,7 +10,7 @@ public class Allitemdaoimpl implements AllitemDao {
 
 	@Override
 	public void showallitem() {
-		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "root");
+		try( Connection connection=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root", "wiley");
 				Statement statement=connection.createStatement();	) {
 
 			ResultSet resultSet= statement.executeQuery("SELECT * FROM allItems");

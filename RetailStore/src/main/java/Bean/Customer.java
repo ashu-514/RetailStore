@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Customer {
-	int customerID;
-	String customerName;
+	int customer_ID;
+	String customer_Name;
 	String userName;
 	String password;
 	

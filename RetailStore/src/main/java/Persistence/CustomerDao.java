@@ -5,8 +5,8 @@ import Bean.Customer;
 public interface CustomerDao {
 
 	
-	int addCustomer(Customer customer);
+	boolean addCustomer(Customer customer);
 	void deleteCustomer();
-	void searchCustomer();
+	boolean searchCustomer(int id);
 	void showCustomer();
 }
