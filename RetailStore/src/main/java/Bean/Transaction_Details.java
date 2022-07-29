@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class Item {
+public class Transaction_Details {
+	
+	int transaction_ID;
 	int item_ID;
-	String item_Name;
-	String item_Category;
-	int item_Quantity;
-	double item_Price;	
+	int quantity;
 
 }
