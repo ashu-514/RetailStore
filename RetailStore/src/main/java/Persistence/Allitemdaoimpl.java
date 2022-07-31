@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import Bean.Item;
 public class Allitemdaoimpl implements AllitemDao {
 
 	@Override
@@ -33,18 +35,18 @@ public class Allitemdaoimpl implements AllitemDao {
 	}
 
 	@Override
-	public void additem() {
+	public boolean additem(Item allItems) {
 		int rows = 0;
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
 				"wiley");
 				PreparedStatement preparedStatement = connection
-						.prepareStatement("INSERT INTO allItems values(?,?,?)");) {
+						.prepareStatement("INSERT INTO allItems values(?,?,?)")) {
 
-			preparedStatement.setInt(1, allItems.getitem_ID());
-			preparedStatement.setInt(2, allItems.getitem_Name());
-			preparedStatement.setInt(3, allItems.getitem_Category);
-			preparedStatement.setInt(4, allItems.getitem_Quantity());
-			preparedStatement.setInt(5, allItems.getitem_Price());
+			preparedStatement.setInt(1, allItems.getItem_ID());
+			preparedStatement.setString(2, allItems.getItem_Name());
+			preparedStatement.setString(3, allItems.getItem_Category());
+			preparedStatement.setInt(4, allItems.getItem_Quantity());
+			preparedStatement.setDouble(5, allItems.getItem_Price());
 
 			rows = preparedStatement.executeUpdate();
 
@@ -57,7 +59,6 @@ public class Allitemdaoimpl implements AllitemDao {
 			return false;
 	}
 
-	}
 
 	@Override
 	public void deleteitem() {

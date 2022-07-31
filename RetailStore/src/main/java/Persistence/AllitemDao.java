@@ -1,7 +1,9 @@
 package Persistence;
 
+import Bean.Item;
+
 public interface AllitemDao {
 void showallitem();
-void additem();
+boolean additem(Item allItem);
 void deleteitem();
 }
