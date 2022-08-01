@@ -36,8 +36,28 @@ public class CustomerDaoImp implements CustomerDao {
 	}
 
 	@Override
-	public void deleteCustomer() {
-		// TODO Auto-generated method stub
+	public boolean deleteCustomer(int id) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("DELETE FROM customer where customer_Id=?");) {
+
+			preparedStatement.setInt(1,id);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				System.out.println("Customer Data Deleted");
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 		
 	}
 

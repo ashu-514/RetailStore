@@ -6,7 +6,7 @@ public interface CustomerDao {
 
 	
 	boolean addCustomer(Customer customer);
-	void deleteCustomer();
+	boolean deleteCustomer(int id);
 	boolean searchCustomer(int id);
 	void showCustomer();
 }
