@@ -73,7 +73,7 @@ public class Allitemdaoimpl implements AllitemDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
-				System.out.println("Item Deleted");
+				//System.out.println("Item Deleted");
 				return true;
 			}
 			else {

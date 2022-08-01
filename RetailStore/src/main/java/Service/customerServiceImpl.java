@@ -1,31 +1,29 @@
 package Service;
 
 import Bean.Customer;
+import Persistence.CustomerDaoImp;
 
 public class customerServiceImpl implements customerService {
-
+	CustomerDaoImp cd=new CustomerDaoImp();
 	@Override
-	public int addCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean addCustomer(Customer customer) {
+		return cd.addCustomer(customer);
 	}
 
 	@Override
-	public void deleteCustomer() {
-		// TODO Auto-generated method stub
-
+	public boolean deleteCustomer(int id) {
+		return cd.deleteCustomer(id);
 	}
 
 	@Override
-	public void searchCustomer() {
-		// TODO Auto-generated method stub
-
+	public boolean searchCustomer(int id) {
+		return cd.searchCustomer(id);
 	}
 
 	@Override
 	public void showCustomer() {
-		// TODO Auto-generated method stub
-
+		cd.showCustomer();
 	}
 
+	
 }

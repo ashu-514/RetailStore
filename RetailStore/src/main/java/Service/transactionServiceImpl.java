@@ -1,7 +1,12 @@
 package Service;
 
-public class transactionServiceImpl implements transactionService {
+import java.util.List;
 
+import Bean.Transaction_Details;
+import Persistence.TransactionDetailsDaoImpl;
+
+public class transactionServiceImpl implements transactionService {
+	TransactionDetailsDaoImpl td=new TransactionDetailsDaoImpl();
 	@Override
 	public void generatebill(int customer_id) {
 		// TODO Auto-generated method stub
@@ -15,21 +20,25 @@ public class transactionServiceImpl implements transactionService {
 	}
 
 	@Override
-	public void showalltransactions() {
-		// TODO Auto-generated method stub
-
+	public void showalltransactionDetails() {
+		td.showalltransactionDetails();
 	}
 
 	@Override
-	public void addtransaction() {
-		// TODO Auto-generated method stub
-
+	public boolean addtransactionDetail(Transaction_Details trans_details) {
+		return td.addtransactionDetail(trans_details);
 	}
 
 	@Override
-	public void deletetransaction() {
-		// TODO Auto-generated method stub
-
+	public boolean deletetransactionDetail(int id) {
+		return td.deletetransactionDetail(id);
 	}
+
+	@Override
+	public List<Transaction_Details> searchTransactionDetails(int transid) {
+		return td.searchTransactionDetails(transid);
+	}
+
+	
 
 }

@@ -4,9 +4,9 @@ import Bean.Customer;
 
 public interface customerService {
 	
-	int addCustomer(Customer customer);
-	void deleteCustomer();
-	void searchCustomer();
+	boolean addCustomer(Customer customer);
+	boolean deleteCustomer(int id);
+	boolean searchCustomer(int id);
 	void showCustomer();
 
 }
