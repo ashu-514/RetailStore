@@ -1,9 +1,11 @@
 package Persistence;
 
 import Bean.Transaction;
+import Bean.Transaction_Details;
 
 public interface TransactionDao {
 	void showalltransactions();
 	boolean addtransaction(Transaction transaction);
-	void deletetransaction();
+	boolean deletetransaction(int id);
+	Transaction_Details searchTransaction(int transid) ;
 }
