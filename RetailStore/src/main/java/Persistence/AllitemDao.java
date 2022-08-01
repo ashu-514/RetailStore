@@ -6,5 +6,5 @@ public interface AllitemDao {
 void showallitem();
 boolean additem(Item item);
 boolean searchItem(int id);
-void deleteitem();
+boolean deleteitem(int id);
 }
