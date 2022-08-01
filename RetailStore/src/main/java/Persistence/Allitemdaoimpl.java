@@ -67,4 +67,28 @@ public class Allitemdaoimpl implements AllitemDao {
 
 	}
 
+	@Override
+	public boolean searchItem(int id) {
+		
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("SELECT * FROM allitems where item_Id=?");) {
+
+			preparedStatement.setInt(1,id);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				int id1 = resultSet.getInt("item_Id");
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+		
+	}
+
 }
