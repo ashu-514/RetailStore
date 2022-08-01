@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import Bean.Item;
 public class Allitemdaoimpl implements AllitemDao {
 
 	@Override
@@ -40,11 +42,11 @@ public class Allitemdaoimpl implements AllitemDao {
 				PreparedStatement preparedStatement = connection
 						.prepareStatement("INSERT INTO allItems values(?,?,?,?,?)");) {
 
-			preparedStatement.setInt(1, item.getitem_ID());
-			preparedStatement.setInt(2, item.getitem_Name());
-			preparedStatement.setInt(3, item.getitem_Category);
-			preparedStatement.setInt(4, item.getitem_Quantity());
-			preparedStatement.setInt(5, item.getitem_Price());
+			preparedStatement.setInt(1, item.getItem_ID());
+			preparedStatement.setString(2, item.getItem_Name());
+			preparedStatement.setString(3, item.getItem_Category());
+			preparedStatement.setInt(4, item.getItem_Quantity());
+			preparedStatement.setDouble(5, item.getItem_Price());
 
 			rows = preparedStatement.executeUpdate();
 
@@ -57,7 +59,7 @@ public class Allitemdaoimpl implements AllitemDao {
 			return false;
 	}
 
-	}
+	
 
 	@Override
 	public void deleteitem() {
