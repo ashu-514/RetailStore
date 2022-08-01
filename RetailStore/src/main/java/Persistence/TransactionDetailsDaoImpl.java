@@ -38,8 +38,28 @@ public class TransactionDetailsDaoImpl implements TransactionDetailsDao {
 
 
 	@Override
-	public void deletetransactionDetail() {
-		// TODO Auto-generated method stub
+	public boolean deletetransactionDetail(int id) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("DELETE FROM transaction_details where transaction_Id=?");) {
+
+			preparedStatement.setInt(1,id);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				//System.out.println("Deleted");
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 
 	}
 
