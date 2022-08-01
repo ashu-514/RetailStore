@@ -58,11 +58,56 @@ public class Allitemdaoimpl implements AllitemDao {
 			return false;
 	}
 
+	
 
 	@Override
-	public void deleteitem() {
-		// TODO Auto-generated method stub
+	public boolean deleteitem(int id) {
+		
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("DELETE FROM allitems where item_Id=?");) {
 
+			preparedStatement.setInt(1,id);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				System.out.println("Item Deleted");
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	@Override
+	public boolean searchItem(int id) {
+		
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("SELECT * FROM allitems where item_Id=?");) {
+
+			preparedStatement.setInt(1,id);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				int id1 = resultSet.getInt("item_Id");
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+		
 	}
 
 }
