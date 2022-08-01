@@ -2,11 +2,12 @@ package Service;
 
 import java.util.List;
 
+import Bean.Bill;
 import Bean.Transaction_Details;
 
 public interface transactionService {
 	
-	void generatebill(int customer_id);
+	List<Bill> generatebill(int customer_id);
 	void showbill(int customer_id);
 	void showalltransactionDetails();
 	boolean addtransactionDetail(Transaction_Details trans_details);
