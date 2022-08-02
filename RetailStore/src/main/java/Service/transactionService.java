@@ -3,15 +3,15 @@ package Service;
 import java.util.List;
 
 import Bean.Bill;
+import Bean.Transaction;
 import Bean.Transaction_Details;
 
 public interface transactionService {
 	
 	List<Bill> generatebill(int customer_id);
 	void showbill(int customer_id);
-	void showalltransactionDetails();
-	boolean addtransactionDetail(Transaction_Details trans_details);
-	boolean deletetransactionDetail(int id);
-	List<Transaction_Details> searchTransactionDetails(int transid);
-
+	void showalltransactions();
+	boolean addtransaction(Transaction transaction);
+	boolean deletetransaction(int id);
+	Transaction_Details searchTransaction(int transid) ;
 }

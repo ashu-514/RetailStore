@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Bean.Bill;
+import Bean.Transaction;
 import Bean.Transaction_Details;
 import Persistence.TransactionDetailsDaoImpl;
+import Persistence.transactionDaoImpl;
 
 public class transactionServiceImpl implements transactionService {
-	TransactionDetailsDaoImpl td=new TransactionDetailsDaoImpl();
+	transactionDaoImpl td=new transactionDaoImpl();
 	@Override
 	public List<Bill> generatebill(int customer_id) {
 		
@@ -62,35 +64,33 @@ public class transactionServiceImpl implements transactionService {
 			e.printStackTrace();
 		}
 		return billlist;
-
-	}
-
-	@Override
-	public void showbill(int customer_id) {
 		// TODO Auto-generated method stub
 
 	}
-
 	@Override
-	public void showalltransactionDetails() {
-		td.showalltransactionDetails();
+	public void showbill(int customer_id) {
+		
+	}
+	@Override
+	public void showalltransactions() {
+		td.showalltransactions();
+		
+	}
+	@Override
+	public boolean addtransaction(Transaction transaction) {
+		
+		return td.addtransaction(transaction);
+	}
+	@Override
+	public boolean deletetransaction(int id) {
+		return td.deletetransaction(id);
+	}
+	@Override
+	public Transaction_Details searchTransaction(int transid) {
+		return td.searchTransaction(transid);
 	}
 
-	@Override
-	public boolean addtransactionDetail(Transaction_Details trans_details) {
-		return td.addtransactionDetail(trans_details);
-	}
-
-	@Override
-	public boolean deletetransactionDetail(int id) {
-		return td.deletetransactionDetail(id);
-	}
-
-	@Override
-	public List<Transaction_Details> searchTransactionDetails(int transid) {
-		return td.searchTransactionDetails(transid);
-	}
-
+	
 	
 
 }
