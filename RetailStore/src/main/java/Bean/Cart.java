@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Cart {
-	int customer_id;
- int item_Id;
- String item_Name;
- int quantity;
- double price;
+	 int customer_id;
+	 int item_Id;
+	 String item_Name;
+	 int quantity;
+	 double price;
 }
