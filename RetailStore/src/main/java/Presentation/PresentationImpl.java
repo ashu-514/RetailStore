@@ -114,7 +114,9 @@ public class PresentationImpl implements Presentation {
 		    String password=scanner.nextLine();
 		    Customer cust=new Customer(cid,name,username,password);
 		    cs.addCustomer(cust);
-		    System.out.println("Welcome To RetailStore XYZ :)");
+		    System.out.println("Registration Successfull :)");
+		    System.out.println("Login Now");
+		    login();
 		}
 	}
 }
