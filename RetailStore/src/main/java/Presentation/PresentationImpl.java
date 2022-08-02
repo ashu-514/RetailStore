@@ -8,6 +8,7 @@ import java.util.Scanner;
 import Bean.Customer;
 import Service.allitemServiceImpl;
 import Service.customerServiceImpl;
+import Service.generate_billServiceImpl;
 import Service.transactionDetailsServiceImpl;
 import Service.transactionServiceImpl;
 
@@ -38,12 +39,15 @@ public class PresentationImpl implements Presentation {
 		try {
 			switch (choice) {
 			case 1:
-				System.out.println("Add New Item");
-				System.out.println("Remove Item");
+				
 				
 				break;
 
 			case 2:
+				generate_billServiceImpl gb=new generate_billServiceImpl();
+				System.out.println("Enter Customer_id");
+				int cust_id=scanner.nextInt();
+				gb.generate_bill(cust_id);
 				System.out.println("Bill:");
 				
 				break;
