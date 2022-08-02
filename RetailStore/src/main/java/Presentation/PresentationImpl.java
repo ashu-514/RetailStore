@@ -6,7 +6,10 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import Bean.Customer;
+import Service.allitemServiceImpl;
 import Service.customerServiceImpl;
+import Service.transactionDetailsServiceImpl;
+import Service.transactionServiceImpl;
 
 
 public class PresentationImpl implements Presentation {
@@ -46,17 +49,26 @@ public class PresentationImpl implements Presentation {
 				break;
 
 			case 3:
-				System.out.println("Items:");
+				System.out.println("Showing All Items:");
+				allitemServiceImpl item=new allitemServiceImpl();
+				item.showallitem();
 				break;
 			
 			case 4:
-				System.out.println("Transactions:");
+				System.out.println("Showing all Transactions:");
+				transactionServiceImpl ts=new transactionServiceImpl();
+				ts.showalltransactions();
 				break;
 				
 			case 5:
-				System.out.println("Transaction Details:");
+				System.out.println(" Showing all Transaction Details:");
+				transactionDetailsServiceImpl tds=new transactionDetailsServiceImpl();
+				tds.showalltransactionDetails();
 				break;
 			case 6:
+				System.out.println("Showing all customers");
+				customerServiceImpl css=new customerServiceImpl();
+				css.showCustomer();
 				break;
 			case 7:
 				System.out.println("Thanks for Visiting Our Store.");
