@@ -7,5 +7,5 @@ public interface TransactionDao {
 	void showalltransactions();
 	boolean addtransaction(Transaction transaction);
 	boolean deletetransaction(int id);
-	Transaction_Details searchTransaction(int transid) ;
+	Transaction searchTransaction(int custid) ;
 }

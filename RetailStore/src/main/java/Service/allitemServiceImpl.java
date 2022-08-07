@@ -16,7 +16,7 @@ public class allitemServiceImpl implements allitemService {
 	}
 
 	@Override
-	public boolean searchItem(int id) {
+	public Item searchItem(int id) {
 		return aa.searchItem(id);
 	}
 

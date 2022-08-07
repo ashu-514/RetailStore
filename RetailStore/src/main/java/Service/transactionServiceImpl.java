@@ -36,8 +36,8 @@ public class transactionServiceImpl implements transactionService {
 		return td.deletetransaction(id);
 	}
 	@Override
-	public Transaction_Details searchTransaction(int transid) {
-		return td.searchTransaction(transid);
+	public Transaction searchTransaction(int custid) {
+		return td.searchTransaction(custid);
 	}
 
 	

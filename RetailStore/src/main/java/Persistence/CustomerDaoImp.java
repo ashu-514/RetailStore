@@ -23,7 +23,7 @@ public class CustomerDaoImp implements CustomerDao {
 			while(resultSet.next()) {
 				int customer_id=resultSet.getInt("customer_Id");
 				String customer_name=resultSet.getString("customer_Name");
-				String user_name=resultSet.getString("user_name");
+				String user_name=resultSet.getString("User_Name");
 				String password=resultSet.getString("passwords");
 								
 				System.out.println(customer_id +" "+customer_name+" "+user_name+" "+password);
@@ -63,6 +63,7 @@ public class CustomerDaoImp implements CustomerDao {
 
 	@Override
 	public boolean searchCustomer(int id) {
+		//Customer cust=null;
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
 				"wiley");
 				PreparedStatement preparedStatement = connection
@@ -71,15 +72,20 @@ public class CustomerDaoImp implements CustomerDao {
 			preparedStatement.setInt(1,id);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
-
+            
 			if (resultSet.next()) {
-				int id1 = resultSet.getInt("customer_Id");
+				//int id1 = resultSet.getInt("customer_Id");
+				//String customer_Name=resultSet.getString("customer_Name");
+				//String userName=resultSet.getString(" User_Name");
+				//String password=resultSet.getString("password");
+				//cust=new Customer(id1,customer_Name,userName,password);
 				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
+		
 		
 	}
 
@@ -94,7 +100,7 @@ public class CustomerDaoImp implements CustomerDao {
 
 			preparedStatement.setInt(1, customer.getCustomer_ID());
 			preparedStatement.setString(2, customer.getCustomer_Name());
-			preparedStatement.setString(3, customer.getUserName());
+			preparedStatement.setString(3, customer.getUser_Name());
 			preparedStatement.setString(4, customer.getPassword());
 			
 

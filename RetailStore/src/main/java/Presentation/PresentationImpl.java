@@ -5,7 +5,10 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Scanner;
 
+import Bean.Cart;
 import Bean.Customer;
+import Bean.Transaction;
+import Persistence.TransactionDetailsDaoImpl;
 import Service.allitemServiceImpl;
 import Service.customerServiceImpl;
 import Service.generate_billServiceImpl;
@@ -15,7 +18,7 @@ import Service.transactionServiceImpl;
 
 public class PresentationImpl implements Presentation {
 
-	
+	static int customer_id;
 	@Override
 	public void showMenu() {
 		System.out.println("1. Add To Cart");
@@ -40,14 +43,28 @@ public class PresentationImpl implements Presentation {
 			switch (choice) {
 			case 1:
 				
+				System.out.println("Showing All Items:");
+				allitemServiceImpl item1=new allitemServiceImpl();
+				item1.showallitem();
+				
+				System.out.println("Enter Item id");
+				int item_id=scanner.nextInt();
+				System.out.println("Enter how many");
+				int quan=scanner.nextInt();
+				transactionDetailsServiceImpl tdsi=new transactionDetailsServiceImpl();
+				if(tdsi.addToCart(new Cart(customer_id,item_id,item1.searchItem(item_id).getItem_Name(),quan,item1.searchItem(item_id).getItem_Price())))
+					System.out.println("Added to cart");
+				else
+					System.out.println("Not available");
+				
 				
 				break;
 
 			case 2:
 				generate_billServiceImpl gb=new generate_billServiceImpl();
-				System.out.println("Enter Customer_id");
-				int cust_id=scanner.nextInt();
-				gb.generate_bill(cust_id);
+				//System.out.println("Enter Customer_id");
+				//customer_id=scanner.nextInt();
+				gb.generate_bill(customer_id);
 				System.out.println("Bill:");
 				
 				break;
@@ -76,6 +93,10 @@ public class PresentationImpl implements Presentation {
 				break;
 			case 7:
 				System.out.println("Thanks for Visiting Our Store.");
+				transactionDetailsServiceImpl tddi=new transactionDetailsServiceImpl();
+				transactionServiceImpl tdi=new transactionServiceImpl();
+				Transaction t=tdi.searchTransaction(customer_id);
+				tddi.deletetransactionDetail(t.getTransaction_ID());
 				System.exit(0);
 			default:
 				System.out.println("Invalid Coice");
@@ -97,26 +118,34 @@ public class PresentationImpl implements Presentation {
 		System.out.println("Login");
 		System.out.println("Enter customer_id");
 		Scanner scanner = new Scanner(System.in);
-		int cid=scanner.nextInt();
+		customer_id=scanner.nextInt();
 		customerServiceImpl cs=new customerServiceImpl();
-
-		if(cs.searchCustomer(cid)) {
+      
+		if(cs.searchCustomer(customer_id)) 
+		{
 			System.out.println("loginSuccessful");
-			while(true) {
+			while(true)
+			{
 		    showMenu();
 		    int choice;
 		    System.out.println("enter choice");
 		    choice=scanner.nextInt();
-		    performMenu(choice);}}
+		    performMenu(choice);
+		    }
+			}
 		else
 		{
+			Scanner s=new Scanner(System.in);
 			System.out.println("Enter Name");
-		    String name=scanner.nextLine();
+		    String name=s.nextLine();
+		    
 		    System.out.println("Enter Username");
-		    String username=scanner.nextLine();
+		    String username=s.nextLine();
+		    
 		    System.out.println("Enter Password");
-		    String password=scanner.nextLine();
-		    Customer cust=new Customer(cid,name,username,password);
+		    String password=s.nextLine();
+		    
+		    Customer cust=new Customer(customer_id,name,username,password);
 		    cs.addCustomer(cust);
 		    System.out.println("Registration Successfull :)");
 		    System.out.println("Login Now");

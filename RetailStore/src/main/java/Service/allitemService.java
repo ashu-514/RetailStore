@@ -6,6 +6,6 @@ public interface allitemService {
 	
 	void showallitem();
 	boolean additem(Item allItem);
-	boolean searchItem(int id);
+	Item searchItem(int id);
 	boolean deleteitem(int id);
 }

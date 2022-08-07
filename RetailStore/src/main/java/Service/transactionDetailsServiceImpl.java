@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Bean.Cart;
+import Bean.Item;
 import Bean.Transaction;
 import Bean.Transaction_Details;
+import Persistence.Allitemdaoimpl;
 import Persistence.TransactionDetailsDaoImpl;
 import Persistence.transactionDaoImpl;
 
@@ -33,11 +35,20 @@ public class transactionDetailsServiceImpl implements transactionDetailsService 
 			preparedStatement.setInt(1,custid);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			
+			Allitemdaoimpl itemdao=new Allitemdaoimpl();
+			Item item=itemdao.searchItem(item_id);
+			if(item.getItem_Quantity()>=quantity)
+			{
 
 			if (resultSet.next()) {
 				int transaction_id = resultSet.getInt("transaction_Id");
 				transaction=new Transaction_Details(transaction_id,item_id,quantity);
 				td.addtransactionDetail(transaction);
+			}
+			itemdao.updateQuantity(item_id, quantity);
+			       return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

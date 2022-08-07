@@ -87,7 +87,7 @@ public class Allitemdaoimpl implements AllitemDao {
 
 	}
 	@Override
-	public boolean searchItem(int id) {
+	public Item searchItem(int id) {
 		
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
 				"wiley");
@@ -100,14 +100,45 @@ public class Allitemdaoimpl implements AllitemDao {
 
 			if (resultSet.next()) {
 				int id1 = resultSet.getInt("item_Id");
-				return true;
+				String item_Name=resultSet.getString("item_Name");
+				String item_Category=resultSet.getString("item_Category");
+				int item_Quantity=resultSet.getInt("Quantity");
+				double item_Price=resultSet.getDouble("Price");
+				Item item=new Item(id1,item_Name,item_Category,item_Quantity,item_Price);
+				return item;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
+		
+		
+	}
+
+	@Override
+	public boolean updateQuantity(int item_id,int quantity11) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("Update allitems set quantity=quantity-? where item_id=?;");) {
+
+			preparedStatement.setInt(1,quantity11);
+			preparedStatement.setInt(2,item_id);
+
+			int rows = preparedStatement.executeUpdate();
+
+			if (rows>0) {
+				//System.out.println("Item Deleted");
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
-		
-		
 	}
 
 }

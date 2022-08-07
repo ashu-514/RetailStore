@@ -46,9 +46,9 @@ public class TransactionDetailsDaoImpl implements TransactionDetailsDao {
 
 			preparedStatement.setInt(1,id);
 
-			ResultSet resultSet = preparedStatement.executeQuery();
+			int rows = preparedStatement.executeUpdate();
 
-			if (resultSet.next()) {
+			if (rows>0) {
 				//System.out.println("Deleted");
 				return true;
 			}
@@ -94,18 +94,19 @@ public class TransactionDetailsDaoImpl implements TransactionDetailsDao {
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
 				"wiley");
 				PreparedStatement preparedStatement = connection
-						.prepareStatement("SELECT * FROM transaction_details where transaction_Id=?");) {
+						.prepareStatement("SELECT * FROM transaction_details where transaction_id=?");) {
 
 			preparedStatement.setInt(1,transid);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			if (resultSet.next()) {
+			while(resultSet.next()) {
 				int id1 = resultSet.getInt("transaction_Id");
 				int id2 = resultSet.getInt("Item_Id");
 				int quantity = resultSet.getInt("quantity");
 				
 				list.add(new Transaction_Details(id1,id2,quantity) );
+				//System.out.println("fnn"+list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

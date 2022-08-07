@@ -93,23 +93,23 @@ public class transactionDaoImpl implements TransactionDao {
 
 	}
 	@Override
-	public Transaction_Details searchTransaction(int transid) {
-		Transaction_Details list=null;
+	public Transaction searchTransaction(int custid) {
+		Transaction list=null;
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
 				"wiley");
 				PreparedStatement preparedStatement = connection
-						.prepareStatement("SELECT * FROM transaction_details where transaction_Id=?");) {
+						.prepareStatement("SELECT * FROM transaction where customer_id=?");) {
 
-			preparedStatement.setInt(1,transid);
+			preparedStatement.setInt(1,custid);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
 				int id1 = resultSet.getInt("transaction_Id");
-				int id2 = resultSet.getInt("Item_Id");
-				int quantity = resultSet.getInt("quantity");
+				int id2 = resultSet.getInt("customer_Id");
+				//int quantity = resultSet.getInt("quantity");
 				
-				list=new Transaction_Details(id1,id2,quantity);
+				list=new Transaction(id1,id2);
 				//list.add(new Transaction_Details(id1,id2,quantity) );
 			}
 		} catch (SQLException e) {
