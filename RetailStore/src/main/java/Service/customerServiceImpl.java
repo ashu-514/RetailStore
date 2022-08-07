@@ -16,7 +16,7 @@ public class customerServiceImpl implements customerService {
 	}
 
 	@Override
-	public boolean searchCustomer(int id) {
+	public Customer searchCustomer(int id) {
 		return cd.searchCustomer(id);
 	}
 

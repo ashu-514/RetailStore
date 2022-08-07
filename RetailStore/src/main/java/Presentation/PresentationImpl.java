@@ -120,9 +120,15 @@ public class PresentationImpl implements Presentation {
 		Scanner scanner = new Scanner(System.in);
 		customer_id=scanner.nextInt();
 		customerServiceImpl cs=new customerServiceImpl();
+	
       
-		if(cs.searchCustomer(customer_id)) 
+		if(cs.searchCustomer(customer_id)!=null) 
 		{
+			Scanner s1=new Scanner(System.in);
+			System.out.println("Enter password");
+			String password=s1.nextLine();
+			System.out.println(cs.searchCustomer(customer_id).getPassword());
+			if(password.equals(cs.searchCustomer(customer_id).getPassword())) {
 			System.out.println("loginSuccessful");
 			while(true)
 			{
@@ -133,6 +139,11 @@ public class PresentationImpl implements Presentation {
 		    performMenu(choice);
 		    }
 			}
+			else
+			{
+				System.out.println("Password Incorrect");
+			}
+		}
 		else
 		{
 			Scanner s=new Scanner(System.in);
