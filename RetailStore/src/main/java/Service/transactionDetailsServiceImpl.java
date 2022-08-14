@@ -77,5 +77,15 @@ public class transactionDetailsServiceImpl implements transactionDetailsService 
 		return td.searchTransactionDetails(transid);
 	}
 
+	@Override
+	public boolean deleteitemfromcart(int item_id) {
+	    return td.deleteitemfromcart(item_id);
+	}
+
+	@Override
+	public boolean updateitemquantity(int item_id, int quantity) {
+		return td.updateitemquantity(item_id, quantity);
+	}
+
 	
 }

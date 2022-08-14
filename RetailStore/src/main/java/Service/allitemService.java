@@ -8,4 +8,5 @@ public interface allitemService {
 	boolean additem(Item allItem);
 	Item searchItem(int id);
 	boolean deleteitem(int id);
+	boolean updateQuantity(int item_id,int quantity);
 }

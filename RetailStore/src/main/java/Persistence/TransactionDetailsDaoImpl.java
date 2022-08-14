@@ -115,4 +115,57 @@ public class TransactionDetailsDaoImpl implements TransactionDetailsDao {
 		
 	}
 
+
+	@Override
+	public boolean deleteitemfromcart(int item_id) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("DELETE FROM transaction_details where item_id=?");) {
+
+			preparedStatement.setInt(1,item_id);
+
+			int rows = preparedStatement.executeUpdate();
+
+			if (rows>0) {
+				//System.out.println("Deleted");
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
+	@Override
+	public boolean updateitemquantity(int item_id, int quantity) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/retailstore", "root",
+				"wiley");
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("UPDATE transaction_details SET quantity=? where item_id=?");) {
+			
+			preparedStatement.setInt(1,quantity);
+			preparedStatement.setInt(2,item_id);	
+
+			int rows = preparedStatement.executeUpdate();
+
+			if (rows>0) {
+				//System.out.println("Deleted");
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

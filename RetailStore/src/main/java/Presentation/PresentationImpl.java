@@ -21,13 +21,11 @@ public class PresentationImpl implements Presentation {
 	static int customer_id;
 	@Override
 	public void showMenu() {
-		System.out.println("1. Add To Cart");
-		System.out.println("2. Generate Bill");
-		System.out.println("3. Show All Items");
-		//System.out.println("4. Show All Transactions");
-		System.out.println("5. Show All Transactions Details for customer");
-		//System.out.println("6. Show All Customers");
-		System.out.println("7. Exit");
+		System.out.println("======Menu======");
+		System.out.println("1. Show All Items");
+		System.out.println("2. Go to Cart");
+		System.out.println("3. Generate Bill");		
+		System.out.println("4. Exit");
 		
 
 	}
@@ -37,30 +35,102 @@ public class PresentationImpl implements Presentation {
 	public void performMenu(int choice) {
 		
 		customerServiceImpl cs=new customerServiceImpl();
+		transactionDetailsServiceImpl tdsi=new transactionDetailsServiceImpl();
 		
 		Scanner scanner = new Scanner(System.in);
 		try {
 			switch (choice) {
+			
 			case 1:
+				System.out.println("=============================================================");
+				System.out.println("Showing All Items:");
+				allitemServiceImpl item=new allitemServiceImpl();
+				item.showallitem();
+				System.out.println("=============================================================");
+				break;
 				
+			case 2:
+				
+				while(true) {
+				System.out.println("=============================================================");
 				System.out.println("Showing All Items:");
 				allitemServiceImpl item1=new allitemServiceImpl();
 				item1.showallitem();
+				System.out.println("=============================================================");
 				
-				System.out.println("Enter Item id");
-				int item_id=scanner.nextInt();
-				System.out.println("Enter how many");
-				int quan=scanner.nextInt();
-				transactionDetailsServiceImpl tdsi=new transactionDetailsServiceImpl();
-				if(tdsi.addToCart(new Cart(customer_id,item_id,item1.searchItem(item_id).getItem_Name(),quan,item1.searchItem(item_id).getItem_Price())))
-					System.out.println("Added to cart");
-				else
-					System.out.println("Not available");
+				System.out.println();
+				System.out.println("1.Add to Cart");
+				System.out.println("2.Delete from Cart");
+				System.out.println("3.Update Item Quantity");
+				System.out.println("4.Exit");
+				
+				System.out.println("Enter your choice:");
+				int input = scanner.nextInt();
+				
+				switch(input) {
+				case 1:
+					System.out.println("Enter Item Id");
+					int item_id=scanner.nextInt();
+					System.out.println("Enter Quantity");
+					int quan=scanner.nextInt();
+					if(quan > 0) {
+						
+						if(tdsi.addToCart(new Cart(customer_id,item_id,item1.searchItem(item_id).getItem_Name(),quan,item1.searchItem(item_id).getItem_Price())))
+							System.out.println("Added to cart");
+						else
+							System.out.println("Not available");
+					}
+					else {
+						System.out.println("Enter Proper Quantity");
+					}					
+					break;
+					
+				case 2:
+					System.out.println("Enter Item Id");
+					int delete_item_id=scanner.nextInt();
+					
+					if (tdsi.deleteitemfromcart(delete_item_id)) {
+						System.out.println("Item Deleted");
+					}
+					else {
+						System.out.println("Not in the Cart");
+					}
+					
+					break;
+					
+				case 3:
+					System.out.println("Enter Item Id");
+					int update_item_id=scanner.nextInt();
+					System.out.println("Enter Quantity");
+					int updated_quantity = scanner.nextInt();
+					
+					if(tdsi.updateitemquantity(update_item_id, updated_quantity)) {
+						System.out.println("Item Quantity Updated");
+					}
+					else {
+						System.out.println("Invalid Entry");
+					}
+					
+					break;
+					
+				case 4:
+				
+					System.out.println("Exit from Cart.");	
+					System.out.println();
+					return;
+				default:
+					System.out.println("Invalid Coice");
+					break;
+					
+					
+				}
 				
 				
-				break;
+				}
+				
+				
 
-			case 2:
+			case 3:
 				generate_billServiceImpl gb=new generate_billServiceImpl();
 				//System.out.println("Enter Customer_id");
 				//customer_id=scanner.nextInt();
@@ -74,29 +144,9 @@ public class PresentationImpl implements Presentation {
 				
 				break;
 
-			case 3:
-				System.out.println("Showing All Items:");
-				allitemServiceImpl item=new allitemServiceImpl();
-				item.showallitem();
-				break;
+			
 			
 			case 4:
-				System.out.println("Showing all Transactions:");
-				transactionServiceImpl ts=new transactionServiceImpl();
-				ts.showalltransactions();
-				break;
-				
-			case 5:
-				System.out.println(" Showing all Transaction Details:");
-				transactionDetailsServiceImpl tds=new transactionDetailsServiceImpl();
-				tds.showalltransactionDetails();
-				break;
-			case 6:
-				System.out.println("Showing all customers");
-				customerServiceImpl css=new customerServiceImpl();
-				css.showCustomer();
-				break;
-			case 7:
 				System.out.println("Thanks for Visiting Our Store.");
 				
 				System.exit(0);

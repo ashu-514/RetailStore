@@ -25,6 +25,11 @@ public class allitemServiceImpl implements allitemService {
 		return aa.deleteitem(id);
 	}
 
+	@Override
+	public boolean updateQuantity(int item_id, int quantity) {
+		return aa.updateQuantity(item_id, quantity);
+	}
+
 	
 
 }
