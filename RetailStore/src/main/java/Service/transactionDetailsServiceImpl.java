@@ -39,7 +39,7 @@ public class transactionDetailsServiceImpl implements transactionDetailsService 
 			
 			Allitemdaoimpl itemdao=new Allitemdaoimpl();
 			Item item=itemdao.searchItem(item_id);
-			if(item.getItem_Quantity()>=quantity)
+			if(item.getItem_Quantity()>=quantity && quantity>0)
 			{
 
 			if (resultSet.next()) {

@@ -24,9 +24,9 @@ public class PresentationImpl implements Presentation {
 		System.out.println("1. Add To Cart");
 		System.out.println("2. Generate Bill");
 		System.out.println("3. Show All Items");
-		System.out.println("4. Show All Transactions");
-		System.out.println("5. Show All Transactions Details");
-		System.out.println("6. Show All Customers");
+		//System.out.println("4. Show All Transactions");
+		System.out.println("5. Show All Transactions Details for customer");
+		//System.out.println("6. Show All Customers");
 		System.out.println("7. Exit");
 		
 
@@ -67,6 +67,11 @@ public class PresentationImpl implements Presentation {
 				gb.generate_bill(customer_id);
 				System.out.println("Bill:");
 				
+				transactionDetailsServiceImpl tddi=new transactionDetailsServiceImpl();
+				transactionServiceImpl tdi=new transactionServiceImpl();
+				Transaction t=tdi.searchTransaction(customer_id);
+				tddi.deletetransactionDetail(t.getTransaction_ID());
+				
 				break;
 
 			case 3:
@@ -93,10 +98,7 @@ public class PresentationImpl implements Presentation {
 				break;
 			case 7:
 				System.out.println("Thanks for Visiting Our Store.");
-				transactionDetailsServiceImpl tddi=new transactionDetailsServiceImpl();
-				transactionServiceImpl tdi=new transactionServiceImpl();
-				Transaction t=tdi.searchTransaction(customer_id);
-				tddi.deletetransactionDetail(t.getTransaction_ID());
+				
 				System.exit(0);
 			default:
 				System.out.println("Invalid Coice");
